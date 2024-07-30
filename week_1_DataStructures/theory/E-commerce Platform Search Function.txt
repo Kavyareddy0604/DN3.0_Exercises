@@ -1,0 +1,29 @@
+1. Understand Asymptotic Notation
+Big O Notation:
+
+Definition: Big O notation describes the upper bound of an algorithm's time complexity, representing the worst-case scenario of how the runtime grows relative to the input size.
+Purpose: It helps analyze and compare the efficiency of algorithms, providing insights into their scalability and performance.
+Search Operation Scenarios:
+
+Best Case: The search algorithm finds the target element on the first attempt. For example, in linear search, this happens if the target is the first element of the array.
+Average Case: The search algorithm performs on average half of the possible operations. For linear search, this is the average number of comparisons needed to find the target.
+Worst Case: The search algorithm requires the maximum number of operations. For linear search, this is when the target is at the end of the array or not present.
+
+4. Analysis
+Time Complexity:
+
+Linear Search:
+
+Best Case: O(1) – The target is the first element.
+Average Case: O(n) – The target is somewhere in the array.
+Worst Case: O(n) – The target is not present or at the end of the array.
+Binary Search:
+
+Best Case: O(1) – The target is the middle element.
+Average Case: O(log n) – The array is divided in half with each step.
+Worst Case: O(log n) – The target is not found, but the number of divisions is logarithmic.
+Suitability:
+
+Binary Search: More suitable for large datasets where the array is sorted, due to its logarithmic time complexity.
+Linear Search: Simpler to implement but less efficient for large datasets. It is more suitable when the array is unsorted or very small.
+Binary search is generally preferred for performance in larger, sorted datasets, while linear search might be used in scenarios where simplicity is favored or the data is not sorted.

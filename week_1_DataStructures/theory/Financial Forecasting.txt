@@ -1,0 +1,16 @@
+1. Understand Recursive Algorithms
+Recursion Concept:
+
+Definition: Recursion is a programming technique where a function calls itself to solve smaller instances of the same problem. Each recursive call aims to simplify the problem until a base case is reached.
+Simplification: Recursion can simplify complex problems by breaking them down into smaller, more manageable subproblems. This is particularly useful in problems that have a repetitive or self-similar structure.
+Example Use Case:
+
+4. Analysis
+Time Complexity:
+
+Time Complexity: The time complexity of the recursive algorithm is O(n), where 
+𝑛
+n is the number of years. Each recursive call represents a single year of growth, so the algorithm performs a linear number of recursive calls.
+Space Complexity: The space complexity is also O(n) due to the recursive call stack. Each call adds a new frame to the call stack until the base case is reached.
+
+

@@ -1,0 +1,40 @@
+1. Understand Search Algorithms
+Linear Search:
+
+Description: A linear search scans each element in the list sequentially until it finds the target element or reaches the end of the list.
+Time Complexity:
+Best Case: O(1) – If the element is the first in the list.
+Average Case: O(n) – On average, it will scan half of the list.
+Worst Case: O(n) – If the element is at the end or not present, it will scan the entire list.
+Binary Search:
+
+Description: A binary search works on a sorted list by repeatedly dividing the search interval in half. It compares the target value to the middle element of the list and eliminates half of the search space with each comparison.
+Time Complexity:
+Best Case: O(1) – If the middle element is the target.
+Average Case: O(log n) – The search space reduces exponentially with each step.
+Worst Case: O(log n) – The search space reduces to 1 after log₂(n) steps.
+
+4. Analysis
+Time Complexity Comparison:
+
+Linear Search:
+
+Best Case: O(1) – If the book is the first one in the list.
+Average Case: O(n) – Scans half of the list on average.
+Worst Case: O(n) – Must scan the entire list if the book is at the end or not present.
+Binary Search:
+
+Best Case: O(1) – If the middle element is the target.
+Average Case: O(log n) – The search space halves each time.
+Worst Case: O(log n) – The search space reduces to 1 after log₂(n) steps.
+When to Use Each Algorithm:
+
+Linear Search:
+
+Use Case: When the data set is unsorted or small. It’s straightforward to implement and doesn’t require sorting.
+Advantages: Simplicity and effectiveness with unsorted data.
+Binary Search:
+
+Use Case: When the data set is sorted. It’s efficient for large datasets due to its logarithmic time complexity.
+Advantages: Faster search times with sorted data. However, it requires that the list remains sorted and may involve additional overhead for sorting.
+In summary, for a library management system, binary search is preferable for large, sorted datasets due to its efficiency, while linear search is suitable for smaller or unsorted datasets.

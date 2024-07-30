@@ -1,0 +1,37 @@
+Understand Array Representation
+Array Representation in Memory
+Memory Layout: Arrays in memory are stored in contiguous blocks. This means all elements are placed next to each other in a single continuous block of memory. For example, if an array of integers is declared, the memory locations of the integers are sequential.
+Indexing: Arrays provide constant-time access to elements because the memory address of each element can be computed directly from its index. This is done using the formula: address = base_address + (index * element_size).
+Advantages:
+Constant-Time Access: Accessing any element by its index is O(1) due to direct memory addressing.
+Cache Efficiency: Contiguous memory allocation improves cache performance because adjacent elements are likely to be in the same cache line.
+Simple Implementation: Arrays are straightforward to implement and use.
+
+
+
+Analysis
+Time Complexity of Each Operation
+Add Employee:
+
+Average Case: O(1) (if there's space in the array)
+Worst Case: O(1) (but may require a check if space is available)
+Search Employee by ID:
+
+Average Case: O(n) (linear search)
+Worst Case: O(n) (if the employee is the last one or not present)
+Traverse Employees:
+
+Time Complexity: O(n) (requires visiting each element in the array)
+Delete Employee by ID:
+
+Average Case: O(n) (linear search to find the employee and then shifting elements)
+Worst Case: O(n) (if the employee is the last one or not present)
+Limitations of Arrays
+Fixed Size: Arrays have a fixed size upon creation. If more space is needed, a new larger array must be created and copied, which can be inefficient.
+Deletion Complexity: Deleting an element requires shifting elements to fill the gap, which is O(n).
+Insertion Complexity: Adding an element (if space is available) is O(1), but if the array is full, resizing involves creating a new array and copying elements.
+When to Use Arrays
+Small to Medium Size Data: Arrays are suitable for scenarios where the number of elements is known and relatively small.
+Fixed Size Data: When the size of the dataset does not change frequently.
+Performance Sensitivity: When constant-time access and cache efficiency are important.
+For scenarios with dynamic sizes or frequent insertions/deletions, consider using data structures like ArrayList in Java, which dynamically resizes and provides more flexibility.
