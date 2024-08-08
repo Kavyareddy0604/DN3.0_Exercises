@@ -1,0 +1,60 @@
+Scenario 1: Apply a 1% Discount to Loan Interest Rates for Customers Above 60 Years Old
+
+BEGIN
+    FOR customer_rec IN (
+        SELECT CustomerID, DOB
+        FROM Customers
+    ) LOOP
+        -- Calculate the customer's age
+        DECLARE
+            v_age NUMBER;
+        BEGIN
+            v_age := FLOOR(MONTHS_BETWEEN(SYSDATE, customer_rec.DOB) / 12);
+            
+            IF v_age > 60 THEN
+                -- Update loan interest rates for customers older than 60
+                UPDATE Loans
+                SET InterestRate = InterestRate - 1
+                WHERE CustomerID = customer_rec.CustomerID
+                  AND InterestRate > 1;  -- Ensure interest rate doesn't go below 1%
+            END IF;
+        END;
+    END LOOP;
+    COMMIT;
+END;
+
+
+Scenario 2: Set VIP Status for Customers with Balance Over $10,000
+
+BEGIN
+    FOR customer_rec IN (
+        SELECT CustomerID
+        FROM Customers
+        WHERE Balance > 10000
+    ) LOOP
+        -- Set VIP status for customers with balance over $10,000
+        UPDATE Customers
+        SET IsVIP = TRUE
+        WHERE CustomerID = customer_rec.CustomerID;
+    END LOOP;
+    COMMIT;
+END;
+
+
+Scenario 3: Send Reminders for Loans Due Within the Next 30 Days
+
+BEGIN
+    FOR loan_rec IN (
+        SELECT L.CustomerID, C.Name, L.LoanID, L.EndDate
+        FROM Loans L
+        JOIN Customers C ON L.CustomerID = C.CustomerID
+        WHERE L.EndDate BETWEEN SYSDATE AND SYSDATE + 30
+    ) LOOP
+        -- Print reminder message for loans due in the next 30 days
+        DBMS_OUTPUT.PUT_LINE(
+            'Reminder: Loan ' || loan_rec.LoanID || ' for customer ' || loan_rec.Name ||
+            ' (CustomerID: ' || loan_rec.CustomerID || ') is due on ' || TO_CHAR(loan_rec.EndDate, 'YYYY-MM-DD')
+        );
+    END LOOP;
+END;
+

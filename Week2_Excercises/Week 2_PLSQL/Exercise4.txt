@@ -1,0 +1,60 @@
+Scenario 1: CalculateAge Function
+
+CREATE OR REPLACE FUNCTION CalculateAge (
+    p_dob IN DATE
+) RETURN NUMBER IS
+    v_age NUMBER;
+BEGIN
+    -- Calculate age using the date of birth
+    v_age := FLOOR(MONTHS_BETWEEN(SYSDATE, p_dob) / 12);
+    RETURN v_age;
+END CalculateAge;
+
+
+Scenario 2: CalculateMonthlyInstallment Function
+
+CREATE OR REPLACE FUNCTION CalculateMonthlyInstallment (
+    p_loan_amount IN NUMBER,
+    p_annual_interest_rate IN NUMBER,
+    p_duration_years IN NUMBER
+) RETURN NUMBER IS
+    v_monthly_installment NUMBER;
+    v_monthly_interest_rate NUMBER;
+    v_number_of_payments NUMBER;
+BEGIN
+    -- Convert annual interest rate to monthly and calculate number of payments
+    v_monthly_interest_rate := p_annual_interest_rate / 100 / 12;
+    v_number_of_payments := p_duration_years * 12;
+    
+    -- Calculate the monthly installment using the formula
+    IF v_monthly_interest_rate = 0 THEN
+        v_monthly_installment := p_loan_amount / v_number_of_payments;
+    ELSE
+        v_monthly_installment := (p_loan_amount * v_monthly_interest_rate) / 
+                                 (1 - POWER(1 + v_monthly_interest_rate, -v_number_of_payments));
+    END IF;
+
+    RETURN v_monthly_installment;
+END CalculateMonthlyInstallment;
+
+Scenario 3: HasSufficientBalance Function
+
+CREATE OR REPLACE FUNCTION HasSufficientBalance (
+    p_account_id IN NUMBER,
+    p_amount IN NUMBER
+) RETURN BOOLEAN IS
+    v_balance NUMBER;
+BEGIN
+    -- Retrieve the current balance of the account
+    SELECT Balance INTO v_balance
+    FROM Accounts
+    WHERE AccountID = p_account_id;
+    
+    -- Check if the balance is sufficient
+    RETURN v_balance >= p_amount;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        -- Handle case where account does not exist
+        RETURN FALSE;
+END HasSufficientBalance;
+
